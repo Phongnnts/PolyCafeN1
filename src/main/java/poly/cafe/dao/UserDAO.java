@@ -20,12 +20,12 @@ public class UserDAO extends CrudDAO<User, String> {
 
     @Override
     public void insert(User entity) {
-        XJDBC.update(INSERT_SQL, entity.getUsername(), entity.getPasssword(), entity.isEnabled(), entity.getFullname(), entity.getPhoto(), entity.isManager());
+        XJDBC.update(INSERT_SQL, entity.getUsername(), entity.getPassword(), entity.isEnabled(), entity.getFullname(), entity.getPhoto(), entity.isManager());
     }
 
     @Override
     public void update(User entity) {
-        XJDBC.update(UPDATE_SQL, entity.getPasssword(), entity.isEnabled(), entity.getFullname(), entity.getPhoto(), entity.isManager(), entity.getUsername());
+        XJDBC.update(UPDATE_SQL, entity.getPassword(), entity.isEnabled(), entity.getFullname(), entity.getPhoto(), entity.isManager(), entity.getUsername());
     }
 
     public void delete(String id) {
@@ -36,34 +36,35 @@ public class UserDAO extends CrudDAO<User, String> {
     public List<User> selectAll() {
         return selectBySQL(SELECT_ALL_SQL);
     }
-
+    
+    @Override
     public User selectByID(String id) {
         List<User> list = selectBySQL(SELECT_BY_ID_SQL, id);
-        return list.isEmpty() ? null : list.get(0);
+        if (list.isEmpty()) {
+            return null;
+        }
+        return list.get(0);
     }
 
     @Override
     public List<User> selectBySQL(String sql, Object... args) {
         List<User> list = new ArrayList<>();
-        try (ResultSet rs = XJDBC.query(sql, args)) {
+        try {
+            ResultSet rs = XJDBC.query(sql, args);
             while (rs.next()) {
                 User entity = new User();
-                entity.setUsername(rs.getString("Username"));
-                entity.setPasssword(rs.getString("Password"));
+                entity.setUsername(rs.getString("UserName"));
+                entity.setPassword(rs.getString("Password"));
                 entity.setEnabled(rs.getBoolean("Enabled"));
-                entity.setFullname(rs.getString("Fullname"));
-                entity.setPhoto(rs.getString("Photo"));
-                entity.setManager(rs.getBoolean("Manager"));
+                entity.setFullname(rs.getString("fullname"));
+                entity.setPhoto(rs.getString("photo"));
+                entity.setManager(rs.getBoolean("manager"));
                 list.add(entity);
             }
+            rs.getStatement().getConnection().close();
+            return list;
         } catch (Exception e) {
-            throw new RuntimeException("Error querying Users", e);
+            throw new RuntimeException(e);
         }
-        return list;
-    }
-
-    @Override
-    public User selectedByID(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

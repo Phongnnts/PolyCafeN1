@@ -67,10 +67,4 @@ public class CardDAO extends CrudDAO<Card, Integer> {
             throw new RuntimeException(e);
         }
     }
-
-    @Override
-    public Card selectedByID(Integer id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
 }

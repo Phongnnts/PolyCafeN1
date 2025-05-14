@@ -20,7 +20,7 @@ public abstract class CrudDAO<EntityType, KeyType> {
 
     public abstract List<EntityType> selectAll();
 
-    public abstract EntityType selectedByID(KeyType id);
+    public abstract EntityType selectByID(KeyType id);
 
     public abstract List<EntityType> selectBySQL(String sql, Object... args);
 }
