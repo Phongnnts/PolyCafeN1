@@ -16,7 +16,7 @@ import poly.cafe.util.XAuth;
  * @author admin
  */
 public class ChangePasswordJDialog extends javax.swing.JDialog implements PolyCafeController , ChangePasswordController {
-    UserDAO dao = UserDAO();
+        UserDAO dao = new UserDAO();
     /**
      * Creates new form ChangePasswordJDialog
      */
@@ -48,11 +48,11 @@ public class ChangePasswordJDialog extends javax.swing.JDialog implements PolyCa
         lblConfirmPassword = new javax.swing.JLabel();
         lblNewPassword = new javax.swing.JLabel();
         txtUsername = new javax.swing.JTextField();
-        txtPassword = new javax.swing.JTextField();
-        txtConfirm = new javax.swing.JTextField();
-        txtNewPass = new javax.swing.JTextField();
         btnSave = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
+        txtNewPassword = new javax.swing.JPasswordField();
+        txtCurrentPassword = new javax.swing.JPasswordField();
+        txtCofirmPassword = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -81,6 +81,12 @@ public class ChangePasswordJDialog extends javax.swing.JDialog implements PolyCa
             }
         });
 
+        txtNewPassword.setText("jPasswordField1");
+
+        txtCurrentPassword.setText("jPasswordField1");
+
+        txtCofirmPassword.setText("jPasswordField1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -89,27 +95,26 @@ public class ChangePasswordJDialog extends javax.swing.JDialog implements PolyCa
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblTitle)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblName)
-                            .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(28, 28, 28)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblCurrentPassword)))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtNewPass, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lblNewPassword))
+                            .addComponent(lblNewPassword)
+                            .addGap(105, 105, 105)
+                            .addComponent(lblConfirmPassword)
+                            .addGap(26, 26, 26))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(txtNewPassword, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lblName, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtUsername, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
                             .addGap(28, 28, 28)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lblConfirmPassword)
-                                .addComponent(txtConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(lblCurrentPassword)
+                                .addComponent(txtCurrentPassword)
+                                .addComponent(txtCofirmPassword)))))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -124,16 +129,16 @@ public class ChangePasswordJDialog extends javax.swing.JDialog implements PolyCa
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCurrentPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblConfirmPassword)
                     .addComponent(lblNewPassword))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNewPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
+                    .addComponent(txtNewPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCofirmPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSave)
                     .addComponent(btnExit))
@@ -201,9 +206,9 @@ public class ChangePasswordJDialog extends javax.swing.JDialog implements PolyCa
     private javax.swing.JLabel lblName;
     private javax.swing.JLabel lblNewPassword;
     private javax.swing.JLabel lblTitle;
-    private javax.swing.JTextField txtConfirm;
-    private javax.swing.JTextField txtNewPass;
-    private javax.swing.JTextField txtPassword;
+    private javax.swing.JPasswordField txtCofirmPassword;
+    private javax.swing.JPasswordField txtCurrentPassword;
+    private javax.swing.JPasswordField txtNewPassword;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 @Override
@@ -214,14 +219,14 @@ public class ChangePasswordJDialog extends javax.swing.JDialog implements PolyCa
     @Override
     public void save() {
         String user = txtUsername.getText().trim();
-        String pw = new String(txtPassword.getPassword());
-        String pw1 = new String(txtConfirm.getPassword());
-        String pw2 = new String(txtConfirm.getPassword());
+        String pw = new String(txtCurrentPassword.getPassword());
+        String pw1 = new String(txtNewPassword.getPassword());
+        String pw2 = new String(txtCofirmPassword.getPassword());
         if (user.isEmpty() || pw.isEmpty() || pw1.isEmpty() || pw2.isEmpty()) {
             MsgBox.alert(this, "Các thông tin không được bỏ trống");
             return;
         }
-        if (!user.equalsIgnoreCase(XAuth.user.getUsername())) {
+        if (!user.equalsIgnoreCase(XAuth.user.getPassword())) {
             MsgBox.alert(this, "Sai tên đăng nhập");
         } else if (!pw.equalsIgnoreCase(XAuth.user.getPassword())) {
             MsgBox.alert(this, "Sai mật khẩu");
