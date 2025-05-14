@@ -9,5 +9,8 @@ package poly.cafe.ui;
  * @author admin
  */
 public interface ChangePasswordController {
+    void open();
+    void save();
+    void close();
     
 }
