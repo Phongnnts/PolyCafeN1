@@ -21,12 +21,14 @@ import lombok.ToString;
  * @author admin
  */
 public class User {
+
     private String username;
-    private String passsword;
+    private String password;
     private boolean enabled;
     private String fullname;
+
     @Builder.Default
-    private String photo = "photo.png";
+    private String photo = "photo.png"; // Giá trị mặc định cho ảnh
     private boolean manager;
-    
+
 }
