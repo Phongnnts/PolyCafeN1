@@ -4,17 +4,29 @@
  */
 package poly.cafe.ui;
 
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellEditor;
+import poly.cafe.dao.CategoryDAO;
+import poly.cafe.entity.Category;
+import poly.cafe.util.MsgBox;
+import poly.cafe.util.XImage;
+
 /**
  *
- * @author admin
+ * @author LENOVO
  */
 public class CategoryManagerJDialog extends javax.swing.JDialog {
+
+    CategoryDAO dao = new CategoryDAO();
+    int row = -1;
 
     /**
      * Creates new form CategoryManagerJDialog
      */
     public CategoryManagerJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        init();
         initComponents();
     }
 
@@ -27,19 +39,19 @@ public class CategoryManagerJDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        Tabs = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblCategories = new javax.swing.JTable();
-        btnCheckAll = new javax.swing.JButton();
-        btnUncheckAll = new javax.swing.JButton();
+        tblCategory = new javax.swing.JTable();
+        btnSelectAll = new javax.swing.JButton();
         btnDeleteCheckedItems = new javax.swing.JButton();
+        btnNoSelection = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        txtId = new javax.swing.JLabel();
+        txtIDCategory = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        txtName = new javax.swing.JLabel();
+        txtIDNameCategory = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
-        btnCreate = new javax.swing.JButton();
+        btnAdd = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         btnClear = new javax.swing.JButton();
@@ -51,7 +63,7 @@ public class CategoryManagerJDialog extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        tblCategories.setModel(new javax.swing.table.DefaultTableModel(
+        tblCategory.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -70,19 +82,17 @@ public class CategoryManagerJDialog extends javax.swing.JDialog {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tblCategories);
-
-        btnCheckAll.setText("Chọn tất cả");
-        btnCheckAll.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCheckAllActionPerformed(evt);
+        tblCategory.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tblCategoryMousePressed(evt);
             }
         });
+        jScrollPane1.setViewportView(tblCategory);
 
-        btnUncheckAll.setText("Bỏ chọn tất cả");
-        btnUncheckAll.addActionListener(new java.awt.event.ActionListener() {
+        btnSelectAll.setText("Chọn tất cả");
+        btnSelectAll.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUncheckAllActionPerformed(evt);
+                btnSelectAllActionPerformed(evt);
             }
         });
 
@@ -93,18 +103,25 @@ public class CategoryManagerJDialog extends javax.swing.JDialog {
             }
         });
 
+        btnNoSelection.setText("Bỏ chọn tất cả");
+        btnNoSelection.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNoSelectionActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(170, 170, 170)
-                .addComponent(btnCheckAll)
-                .addGap(34, 34, 34)
-                .addComponent(btnUncheckAll)
-                .addGap(28, 28, 28)
+                .addComponent(btnSelectAll)
+                .addGap(49, 49, 49)
+                .addComponent(btnNoSelection)
+                .addGap(29, 29, 29)
                 .addComponent(btnDeleteCheckedItems)
-                .addContainerGap(171, Short.MAX_VALUE))
+                .addContainerGap(155, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1)
@@ -117,23 +134,38 @@ public class CategoryManagerJDialog extends javax.swing.JDialog {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(48, 48, 48)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCheckAll)
-                    .addComponent(btnUncheckAll)
-                    .addComponent(btnDeleteCheckedItems))
+                    .addComponent(btnSelectAll)
+                    .addComponent(btnDeleteCheckedItems)
+                    .addComponent(btnNoSelection))
                 .addGap(74, 74, 74))
         );
 
-        jTabbedPane1.addTab("DANH SÁCH", jPanel1);
+        Tabs.addTab("DANH SÁCH", jPanel1);
 
-        txtId.setText("Mã loại");
+        txtIDCategory.setText("Mã loại");
 
-        txtName.setText("Tên loại");
+        txtIDNameCategory.setText("Tên loại");
 
-        btnCreate.setText("Tạo mới");
+        btnAdd.setText("Tạo mới");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
 
         btnUpdate.setText("Cập nhật");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
 
         btnDelete.setText("Xóa");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         btnClear.setText("Nhập mới");
         btnClear.addActionListener(new java.awt.event.ActionListener() {
@@ -178,7 +210,7 @@ public class CategoryManagerJDialog extends javax.swing.JDialog {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(btnCreate)
+                        .addComponent(btnAdd)
                         .addGap(18, 18, 18)
                         .addComponent(btnUpdate)
                         .addGap(18, 18, 18)
@@ -197,8 +229,8 @@ public class CategoryManagerJDialog extends javax.swing.JDialog {
                         .addGap(48, 48, 48)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtIDCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtIDNameCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(95, Short.MAX_VALUE))
         );
@@ -206,16 +238,16 @@ public class CategoryManagerJDialog extends javax.swing.JDialog {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(75, 75, 75)
-                .addComponent(txtId)
+                .addComponent(txtIDCategory)
                 .addGap(28, 28, 28)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(64, 64, 64)
-                .addComponent(txtName)
+                .addComponent(txtIDNameCategory)
                 .addGap(27, 27, 27)
                 .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(113, 113, 113)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCreate)
+                    .addComponent(btnAdd)
                     .addComponent(btnUpdate)
                     .addComponent(btnDelete)
                     .addComponent(btnClear)
@@ -226,7 +258,7 @@ public class CategoryManagerJDialog extends javax.swing.JDialog {
                 .addContainerGap(132, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("BIỂU MẪU", jPanel2);
+        Tabs.addTab("BIỂU MẪU", jPanel2);
 
         jLabel3.setText("Quản lý loại đồ uống");
 
@@ -237,36 +269,24 @@ public class CategoryManagerJDialog extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 742, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Tabs, javax.swing.GroupLayout.PREFERRED_SIZE, 742, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 573, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addComponent(Tabs, javax.swing.GroupLayout.PREFERRED_SIZE, 573, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCheckAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckAllActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnCheckAllActionPerformed
-
-    private void btnUncheckAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUncheckAllActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnUncheckAllActionPerformed
-
-    private void btnDeleteCheckedItemsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteCheckedItemsActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnDeleteCheckedItemsActionPerformed
-
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
-        // TODO add your handling code here:
+       ClearForm();
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void btnMoveFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoveFirstActionPerformed
@@ -284,6 +304,36 @@ public class CategoryManagerJDialog extends javax.swing.JDialog {
     private void btnMoveLastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoveLastActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnMoveLastActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        delete();
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnDeleteCheckedItemsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteCheckedItemsActionPerformed
+        deleteCategory();
+    }//GEN-LAST:event_btnDeleteCheckedItemsActionPerformed
+
+    private void btnSelectAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectAllActionPerformed
+        selectAll();
+    }//GEN-LAST:event_btnSelectAllActionPerformed
+
+    private void tblCategoryMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCategoryMousePressed
+        if (evt.getClickCount()==2){
+            edit();
+        }
+    }//GEN-LAST:event_tblCategoryMousePressed
+
+    private void btnNoSelectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNoSelectionActionPerformed
+   noSelectAll();
+    }//GEN-LAST:event_btnNoSelectionActionPerformed
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+    insert();
+    }//GEN-LAST:event_btnAddActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        update();
+    }//GEN-LAST:event_btnUpdateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -314,6 +364,7 @@ public class CategoryManagerJDialog extends javax.swing.JDialog {
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 CategoryManagerJDialog dialog = new CategoryManagerJDialog(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -328,40 +379,206 @@ public class CategoryManagerJDialog extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCheckAll;
+    private javax.swing.JTabbedPane Tabs;
+    private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnClear;
-    private javax.swing.JButton btnCreate;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnDeleteCheckedItems;
     private javax.swing.JButton btnMoveFirst;
     private javax.swing.JButton btnMoveLast;
     private javax.swing.JButton btnMoveNext;
     private javax.swing.JButton btnMovePrevious;
-    private javax.swing.JButton btnUncheckAll;
+    private javax.swing.JButton btnNoSelection;
+    private javax.swing.JButton btnSelectAll;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTable tblCategories;
-    private javax.swing.JLabel txtId;
-    private javax.swing.JLabel txtName;
+    private javax.swing.JTable tblCategory;
+    private javax.swing.JLabel txtIDCategory;
+    private javax.swing.JLabel txtIDNameCategory;
     // End of variables declaration//GEN-END:variables
-\
-public void deleteCategory() {
-    if (MsgBox.confirm(this, " Bạn đang thực hiện chức năng xóa")) {
-        boolean kq = false;
-        for (int i = tblCategory.getRowCount() -1; i>= 0;i--){
-            String id = tblCategory.getValueAt(i,0).toString();
-            Object value = tblCategory.getValueAt(i,2);
-            if {
-                value
+void init() {
+        setIconImage(XImage.getAppIcon());
+        setLocationRelativeTo(null);
+        setTitle("DANH MỤC CATEGORY");
+        fillTable();
+    }
+
+    void fillTable() {
+        DefaultTableModel model = (DefaultTableModel) tblCategory.getModel();
+        try {
+            List<Category> list = dao.selectAll();
+            for (Category cd : list) {
+                Object[] row = {
+                    cd.getId(), cd.getName()
+                };
+                model.addRow(row);
             }
+        } catch (Exception e) {
+            MsgBox.alert(this, "Lỗi truy cập dữ liệu");
+        }
+    }
+
+    private void selectAll() {
+        for (int i = 0; i < tblCategory.getRowCount(); i++) {
+            tblCategory.setValueAt(false, i, 2);
+        }
+    }
+    
+    private void noSelectAll(){
+        for(int i=0;i<tblCategory.getRowCount();i++){
+            tblCategory.setValueAt(false, i, 2);
+        }
+    }
+
+    public void deleteCategory() {
+        if (MsgBox.confirm(this, "Bạn đang thực hiện chức năng xóa")) {
+            boolean kq = false;
+            for (int i = tblCategory.getRowCount() - 1; i >= 0; i--) {
+                String id = tblCategory.getValueAt(i, 0).toString();
+                Object value = tblCategory.getValueAt(i, 2);
+                if (value != null && (Boolean) value) {
+
+                    try {
+                        dao.delete(id);
+                        kq = true;
+                    } catch (Exception e) {
+                        MsgBox.alert(this, "Lỗi: " + e.getMessage());
+                        continue;
+                    }
+                }
+            }
+            if (kq) {
+                MsgBox.alert(this, "Xóa thành công");
+            } else {
+                MsgBox.alert(this, "Bạn chọn dòng để xóa!");
+            }
+            this.fillTable();
+        }
+    }
+
+    public boolean ValidateForm() {
+        String id = txtIDCategory.getText().trim();
+        String name = txtIDNameCategory.getText().trim();
+        if (id.isEmpty()) {
+            MsgBox.alert(this, "Vui lòng nhập mã ID!");
+            return false;
+        }
+        if (name.isEmpty()) {
+            MsgBox.alert(this, "Vui lòng nhập tên Category!");
+            return false;
+        }
+        return true;
+    }
+
+    void setForm(Category cd) {
+        txtIDCategory.setText(cd.getId());
+        txtIDNameCategory.setText(cd.getName());
+    }
+
+    void ClearForm() {
+        txtIDCategory.setText("");
+        txtIDNameCategory.setText("");
+        this.row = -1;
+    }
+
+    
+    public Category getForm() {
+        Category cd = new Category();
+        cd.setId(txtIDCategory.getText().trim());
+        cd.setName(txtIDNameCategory.getText().trim());
+        return cd;
+    }
+
+    private void clearTableSelectionAndEdit() {
+
+        TableCellEditor editor = tblCategory.getCellEditor();
+        if (editor != null) {
+            editor.stopCellEditing();
+        }
+        // Bỏ chọn hàng và cột
+        tblCategory.clearSelection();
+        this.requestFocusInWindow();
+    }
+
+    void edit() {
+        row = tblCategory.getSelectedRow();
+        try {
+            String id = tblCategory.getValueAt(row, 0).toString();
+            Category cd = dao.selectedById(id);
+            if (cd != null) {
+                this.setForm(cd);
+                Tabs.setSelectedIndex(1);
+                clearTableSelectionAndEdit();
+            }
+        } catch (Exception e) {
+            MsgBox.alert(this, "Lỗi truy vấn dữ liệu");
+        }
+    }
+
+    void insert() {
+        if (!ValidateForm()) {
+            return;
+        }
+        Category cd = getForm();
+        // Kiểm tra trùng mã chuyên đề
+        if (dao.selectedById(cd.getId()) != null) {
+            MsgBox.alert(this, "ID đã tồn tại!");
+            txtIDCategory.requestFocus();
+            return;
+        }
+        try {
+            dao.insert(cd);
+            this.fillTable();
+            this.ClearForm();
+            MsgBox.alert(this, "Thêm dữ liệu thành công");
+        } catch (Exception e) {
+            MsgBox.alert(this, "Lỗi: " + e.getMessage());
+        }
+    }
+
+    void update() {
+        if (!ValidateForm()) {
+            return;
+        }
+        Category cd = getForm();
+        if (dao.selectedById(cd.getId()) == null) {
+            MsgBox.alert(this, "Không tồn tại ID để cập nhật");
+            return;
+        }
+        try {
+            dao.update(cd);
+            this.fillTable();
+            this.ClearForm();
+            MsgBox.alert(this, "Cập nhật dữ liệu thành công");
+        } catch (Exception e) {
+            MsgBox.alert(this, "Lỗi: " + e.getMessage());
+        }
+    }
+
+    void delete() {
+        String id = txtIDCategory.getText().trim();
+        if (id.isEmpty()) {
+            MsgBox.alert(this, "Vui lòng nhập mã Category để xóa");
+            return;
+        }
+
+        if (dao.selectedById(id) == null) {
+            MsgBox.alert(this, "Không tồn tại mã thể để xóa");
+            return;
+        }
+
+        try {
+            dao.delete(id);
+            this.fillTable();
+            this.ClearForm();
+            MsgBox.alert(this, "Xóa dữ liệu thành công");
+        } catch (Exception e) {
+            MsgBox.alert(this, "Lỗi: " + e.getMessage());
         }
     }
 }
-}
-
