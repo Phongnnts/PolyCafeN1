@@ -1,5 +1,12 @@
 package poly.cafe.ui;
 
+import java.awt.Color;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import poly.cafe.dao.UserDAO;
+import poly.cafe.entity.User;
+import poly.cafe.util.MsgBox;
+import poly.cafe.util.XAuth;
 import poly.cafe.util.XImage;
 
 /*
@@ -10,8 +17,26 @@ import poly.cafe.util.XImage;
  *
  * @author admin
  */
-public class LoginJDialog extends javax.swing.JDialog {
+public class LoginJDialog extends javax.swing.JDialog implements PolyCafeControler {
 
+        UserDAO dao = new UserDAO();
+
+    @Override
+    public void init() {
+        setIconImage(XImage.getAppIcon());
+        setLocationRelativeTo(null);
+        setTitle("Poly Cafe");
+        getContentPane().setBackground(new Color(255, 255, 255));
+
+        this.setDefaultCloseOperation(LoginJDialog.DO_NOTHING_ON_CLOSE);
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                System.exit(0);
+            }
+        });
+    }
+    
     /**
      * Creates new form DangNhap
      */
@@ -19,12 +44,6 @@ public class LoginJDialog extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         init();
-    }
-
-    void init() {
-        setIconImage(XImage.getAppIcon());
-        setLocationRelativeTo(null);
-        setTitle("Poly Cafe");
     }
 
     /**
@@ -162,4 +181,20 @@ public class LoginJDialog extends javax.swing.JDialog {
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtPassword;
     // End of variables declaration//GEN-END:variables
+
+    private void Login() {
+        String username = txtName.getText();
+        String password = txtPassword.getText();
+        User user = dao.selectByID(username);
+        if (user == null) {
+            MsgBox.alert(this, "Sai tên đăng nhập");
+        } else if (!user.isEnabled()) {
+            MsgBox.alert(this, "Tài khoản đã bị khóa");
+        } else if (!user.getPassword().equals(password)) {
+            MsgBox.alert(this, "Sai mật khẩu!");
+        } else {
+            XAuth.user = user;
+            this.dispose();
+        }
+    }
 }
