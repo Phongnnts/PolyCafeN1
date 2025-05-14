@@ -10,7 +10,7 @@ import poly.cafe.util.XImage;
  *
  * @author admin
  */
-public final class PolyCafeJFrame extends javax.swing.JFrame implements PolyCafeControler {
+public final class PolyCafeJFrame extends javax.swing.JFrame implements PolyCafeController {
 
     /**
      * Creates new form PolyCafeJframe
