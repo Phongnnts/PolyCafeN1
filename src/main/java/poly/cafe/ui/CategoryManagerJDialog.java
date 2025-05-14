@@ -350,4 +350,18 @@ public class CategoryManagerJDialog extends javax.swing.JDialog {
     private javax.swing.JLabel txtId;
     private javax.swing.JLabel txtName;
     // End of variables declaration//GEN-END:variables
+\
+public void deleteCategory() {
+    if (MsgBox.confirm(this, " Bạn đang thực hiện chức năng xóa")) {
+        boolean kq = false;
+        for (int i = tblCategory.getRowCount() -1; i>= 0;i--){
+            String id = tblCategory.getValueAt(i,0).toString();
+            Object value = tblCategory.getValueAt(i,2);
+            if {
+                value
+            }
+        }
+    }
 }
+}
+
