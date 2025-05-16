@@ -19,7 +19,7 @@ import poly.cafe.util.XImage;
  */
 public class LoginJDialog extends javax.swing.JDialog implements PolyCafeController {
 
-        UserDAO dao = new UserDAO();
+    UserDAO dao = new UserDAO();
 
     @Override
     public void init() {
@@ -36,7 +36,7 @@ public class LoginJDialog extends javax.swing.JDialog implements PolyCafeControl
             }
         });
     }
-    
+
     /**
      * Creates new form DangNhap
      */
@@ -152,7 +152,8 @@ public class LoginJDialog extends javax.swing.JDialog implements PolyCafeControl
 
     private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
         // TODO add your handling code here:
-        this.dispose();
+        System.exit(0);
+
     }//GEN-LAST:event_btnCloseActionPerformed
 
     /**
