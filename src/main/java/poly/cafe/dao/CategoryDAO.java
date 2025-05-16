@@ -4,6 +4,8 @@
  */
 package poly.cafe.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.util.List;
 import poly.cafe.entity.Category;
 import poly.cafe.util.XJDBC;
@@ -45,6 +47,22 @@ public class CategoryDAO {
         }
         return list.get(0);
     }
+    
+        public String getCategoryIdByName(String name) {
+        String sql = "SELECT Id FROM Categories WHERE Name = ?";
+        try (
+            ResultSet rs = XJDBC.query(sql, name);
+        ) {
+            if (rs.next()) {
+                return rs.getString("Id");
+            }
+            rs.getStatement().getConnection().close();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return null;  // Không tìm thấy
+    }
+        
 public List<Category> selectBySQL(String sql, Object... args) {
     List<Category> list = new ArrayList<>();
     
