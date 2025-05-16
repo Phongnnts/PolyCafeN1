@@ -4,6 +4,7 @@
  */
 package poly.cafe.dao;
 
+import java.util.List;
 import poly.cafe.entity.Drink;
 import poly.cafe.util.XJDBC;
 
@@ -27,6 +28,26 @@ public class DrinkDAO extends CrudDAO<Drink,String> {
         @Override
     public void update (Drink entity) {
         XJDBC.update(UPDATE_SQL, entity.getName(), entity.getUnitPrice(), entity.getDiscount(), entity.getImage(), entity.isAvailable(), entity.getCategoryId());
+    }
+
+    @Override
+    public void delete(String id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public List<Drink> selectAll() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Drink selectByID(String id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public List<Drink> selectBySQL(String sql, Object... args) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
 }
