@@ -4,6 +4,8 @@
  */
 package poly.cafe.dao;
 
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 import poly.cafe.entity.Drink;
 import poly.cafe.util.XJDBC;
@@ -12,42 +14,45 @@ import poly.cafe.util.XJDBC;
  *
  * @author admin
  */
-public class DrinkDAO extends CrudDAO<Drink,String> {
-    final String INSERT_SQL="insert into Drink (id,name,uniprice,discount,image,available,categoryid) values(?,?,?,?,?,?,?)";
-    final String UPDATE_SQL="UPDATE Drinks SET name =?,uniprice=?,dicount=?,image=?,available=?,categoryid=? WHERE Id=?";
-    final String DELETE_SQL="DELETE FROM Drinks WHERE Id=?";
-    final String SELECT_ALL_SQL="SELECT* FROM Drinks";
-    final String SELECT_BY_ID_SQL="SELECT* FROM Drinks WHERE Id=?";
-    final String SELECT_BY_Category_SQL="SELECT*FROM Drinks WHERE CategoryId=?";
+public class DrinkDAO extends CrudDAO<Drink, String> {
+
+    final String INSERT_SQL = "insert into Drink (id,name,uniprice,discount,image,available,categoryid) values(?,?,?,?,?,?,?)";
+    final String UPDATE_SQL = "UPDATE Drinks SET name =?,uniprice=?,dicount=?,image=?,available=?,categoryid=? WHERE Id=?";
+    final String DELETE_SQL = "DELETE FROM Drinks WHERE Id=?";
+    final String SELECT_ALL_SQL = "SELECT* FROM Drinks";
+    final String SELECT_BY_ID_SQL = "SELECT* FROM Drinks WHERE Id=?";
+    final String SELECT_BY_Category_SQL = "SELECT*FROM Drinks WHERE CategoryId=?";
 
     @Override
-    public void insert (Drink entity) {
+    public void insert(Drink entity) {
         XJDBC.update(INSERT_SQL, entity.getId(), entity.getName(), entity.getUnitPrice(), entity.getDiscount(), entity.getImage(), entity.isAvailable(), entity.getCategoryId());
     }
-    
-        @Override
-    public void update (Drink entity) {
+
+    @Override
+    public void update(Drink entity) {
         XJDBC.update(UPDATE_SQL, entity.getName(), entity.getUnitPrice(), entity.getDiscount(), entity.getImage(), entity.isAvailable(), entity.getCategoryId());
     }
 
     @Override
-    public void delete(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public List<Drink> selectedBySQL(String sql, Object... args) {
+        List<Drink> list = new ArrayList<>();
+        try {
+            ResultSet rs = XJDBC.query(sql, args);
+            while (rs.next()) {
+                Drink entity = new Drink();
+                entity.setId(rs.getString("Id"));
+                entity.setName(rs.getString("Name"));
+                entity.setImage(rs.getString("image"));
+                entity.setUnitPrice(rs.getFloat("unitprice"));
+                entity.setDiscount(rs.getFloat("discount"));
+                entity.setAvailable(rs.getBoolean("available"));
+                entity.setName(rs.getString("Categoryid"));
+                list.add(entity);
+
+            }catch (Exception e) {
+                throw new RuntimeException(e);
+                }
+        }
     }
 
-    @Override
-    public List<Drink> selectAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public Drink selectByID(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public List<Drink> selectBySQL(String sql, Object... args) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
 }
