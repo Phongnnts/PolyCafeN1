@@ -34,8 +34,28 @@ public class DrinkDAO extends CrudDAO<Drink, String> {
     }
 
     @Override
-    public List<Drink> selectedBySQL(String sql, Object... args) {
+    public void delete(String id) {
+        XJDBC.update(DELETE_SQL, id);
+    }
+
+    @Override
+    public List<Drink> selectAll() {
+        return selectBySQL(SELECT_ALL_SQL);
+    }
+
+    @Override
+    public Drink selectByID(String id) {
+        List<Drink> list = selectBySQL(SELECT_BY_ID_SQL, id);
+        if (list.isEmpty()) {
+            return null;
+        }
+        return list.get(0);
+    }
+
+    @Override
+    public List<Drink> selectBySQL(String sql, Object... args) {
         List<Drink> list = new ArrayList<>();
+
         try {
             ResultSet rs = XJDBC.query(sql, args);
             while (rs.next()) {
@@ -49,10 +69,18 @@ public class DrinkDAO extends CrudDAO<Drink, String> {
                 entity.setName(rs.getString("Categoryid"));
                 list.add(entity);
 
-            }catch (Exception e) {
-                throw new RuntimeException(e);
-                }
+            }
+            rs.getStatement().getConnection().close();
+            return list;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
+
+    public List<Drink> selectAllCategoryID(String id) {
+        List<Drink> list = selectBySQL(SELECT_BY_Category_SQL, id);
+        return list;
+    }
+
 
 }
