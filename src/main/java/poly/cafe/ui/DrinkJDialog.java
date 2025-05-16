@@ -4,11 +4,15 @@
  */
 package poly.cafe.ui;
 
+import java.awt.Dialog;
+
 /**
  *
  * @author admin
  */
 public class DrinkJDialog extends javax.swing.JDialog {
+
+    private int billId;
 
     /**
      * Creates new form DrinkJDialog
@@ -16,6 +20,14 @@ public class DrinkJDialog extends javax.swing.JDialog {
     public DrinkJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+    }
+
+    public DrinkJDialog(Dialog owner, boolean modal, int billId) {
+        super(owner, modal);
+        initComponents();
+        this.billId = billId;
+        setTitle("CHỌN NƯỚC UỐNG - BillId #" + billId);
+        setLocationRelativeTo(owner);
     }
 
     /**
@@ -136,4 +148,5 @@ public class DrinkJDialog extends javax.swing.JDialog {
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     // End of variables declaration//GEN-END:variables
+
 }
