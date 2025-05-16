@@ -18,8 +18,14 @@ public class XImage {
 
     // Hiện logo trên mỗi cửa sổ giao diện
     public static Image getAppIcon() {
-        URL url = XImage.class.getResource("../icons/trump-small.png");
-        return new ImageIcon(url).getImage();
+        URL url = XImage.class.getResource("src/main/resources/icons");
+        if (url != null) {
+            return new ImageIcon(url).getImage();
+        } else {
+            System.err.println("⚠ Không tìm thấy ảnh: /poly/cafe/icons/trump-small.png");
+            return null;
+//         return new ImageIcon(url).getImage();
+        }
     }
 
     // Hàm này dùng để sao chép file/hình ảnh
@@ -45,13 +51,13 @@ public class XImage {
 
     //Hàm Hiện thị hình đã upload
     public static ImageIcon read(String fileName) {
-        File path = new File("src\\main\\resources\\poly\\cafe\\icons", fileName);
+        File path = new File("src\\main\\resources\\icons", fileName);
         return new ImageIcon(path.getAbsolutePath());
     }
 
     // đọc ảnh load lên label theo kích thước của Label:
     public static ImageIcon readScaled(String fileName, JLabel label) {
-        File path = new File("src\\main\\resources\\poly\\cafe\\icons", fileName);
+        File path = new File("src\\main\\resources\\icons", fileName);
         ImageIcon icon = new ImageIcon(path.getAbsolutePath());
 
         int width = label.getWidth();

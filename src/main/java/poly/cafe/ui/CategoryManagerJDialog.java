@@ -26,8 +26,9 @@ public class CategoryManagerJDialog extends javax.swing.JDialog {
      */
     public CategoryManagerJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        init();
         initComponents();
+        init();
+
     }
 
     /**
@@ -114,30 +115,26 @@ public class CategoryManagerJDialog extends javax.swing.JDialog {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(170, 170, 170)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnSelectAll)
-                .addGap(49, 49, 49)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnNoSelection)
-                .addGap(29, 29, 29)
+                .addGap(12, 12, 12)
                 .addComponent(btnDeleteCheckedItems)
-                .addContainerGap(155, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
+                .addGap(15, 15, 15))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(125, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSelectAll)
                     .addComponent(btnDeleteCheckedItems)
-                    .addComponent(btnNoSelection))
-                .addGap(74, 74, 74))
+                    .addComponent(btnNoSelection)
+                    .addComponent(btnSelectAll))
+                .addGap(27, 27, 27))
         );
 
         Tabs.addTab("DANH SÁCH", jPanel1);
@@ -207,86 +204,93 @@ public class CategoryManagerJDialog extends javax.swing.JDialog {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(36, 36, 36)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnAdd)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnUpdate)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnDelete)
-                        .addGap(22, 22, 22)
-                        .addComponent(btnClear)
-                        .addGap(32, 32, 32)
-                        .addComponent(btnMoveFirst, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnMovePrevious, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnMoveNext, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnMoveLast, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtIDCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtIDNameCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(95, Short.MAX_VALUE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtIDCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtIDNameCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnClear)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnMoveFirst, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnMovePrevious, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnMoveNext, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnMoveLast, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(75, 75, 75)
+                .addGap(77, 77, 77)
                 .addComponent(txtIDCategory)
-                .addGap(28, 28, 28)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(64, 64, 64)
+                .addGap(18, 18, 18)
                 .addComponent(txtIDNameCategory)
-                .addGap(27, 27, 27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(113, 113, 113)
+                .addGap(44, 44, 44)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAdd)
-                    .addComponent(btnUpdate)
                     .addComponent(btnDelete)
+                    .addComponent(btnUpdate)
                     .addComponent(btnClear)
-                    .addComponent(btnMoveFirst)
                     .addComponent(btnMovePrevious)
+                    .addComponent(btnMoveLast)
                     .addComponent(btnMoveNext)
-                    .addComponent(btnMoveLast))
-                .addContainerGap(132, Short.MAX_VALUE))
+                    .addComponent(btnMoveFirst))
+                .addContainerGap(94, Short.MAX_VALUE))
         );
 
         Tabs.addTab("BIỂU MẪU", jPanel2);
 
-        jLabel3.setText("Quản lý loại đồ uống");
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel3.setText("QUẢN LÝ LOẠI ĐỒ UỐNG");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Tabs, javax.swing.GroupLayout.PREFERRED_SIZE, 742, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addGap(16, 16, 16)
+                .addComponent(jLabel3)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(Tabs, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(12, 12, 12)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
-                .addComponent(Tabs, javax.swing.GroupLayout.PREFERRED_SIZE, 573, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addComponent(Tabs))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
-       ClearForm();
+        ClearForm();
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void btnMoveFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoveFirstActionPerformed
@@ -309,6 +313,18 @@ public class CategoryManagerJDialog extends javax.swing.JDialog {
         delete();
     }//GEN-LAST:event_btnDeleteActionPerformed
 
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        insert();
+    }//GEN-LAST:event_btnAddActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        update();
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnNoSelectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNoSelectionActionPerformed
+        noSelectAll();
+    }//GEN-LAST:event_btnNoSelectionActionPerformed
+
     private void btnDeleteCheckedItemsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteCheckedItemsActionPerformed
         deleteCategory();
     }//GEN-LAST:event_btnDeleteCheckedItemsActionPerformed
@@ -318,22 +334,10 @@ public class CategoryManagerJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_btnSelectAllActionPerformed
 
     private void tblCategoryMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCategoryMousePressed
-        if (evt.getClickCount()==2){
+        if (evt.getClickCount() == 2) {
             edit();
         }
     }//GEN-LAST:event_tblCategoryMousePressed
-
-    private void btnNoSelectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNoSelectionActionPerformed
-   noSelectAll();
-    }//GEN-LAST:event_btnNoSelectionActionPerformed
-
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-    insert();
-    }//GEN-LAST:event_btnAddActionPerformed
-
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        update();
-    }//GEN-LAST:event_btnUpdateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -423,14 +427,16 @@ void init() {
         }
     }
 
-    private void selectAll() {
+private void selectAll() {
+    if (tblCategory != null && tblCategory.getRowCount() > 0) {
         for (int i = 0; i < tblCategory.getRowCount(); i++) {
-            tblCategory.setValueAt(false, i, 2);
+            tblCategory.setValueAt(true, i, 2); // Chọn hết
         }
     }
-    
-    private void noSelectAll(){
-        for(int i=0;i<tblCategory.getRowCount();i++){
+}
+
+    private void noSelectAll() {
+        for (int i = 0; i < tblCategory.getRowCount(); i++) {
             tblCategory.setValueAt(false, i, 2);
         }
     }
@@ -486,7 +492,6 @@ void init() {
         this.row = -1;
     }
 
-    
     public Category getForm() {
         Category cd = new Category();
         cd.setId(txtIDCategory.getText().trim());
