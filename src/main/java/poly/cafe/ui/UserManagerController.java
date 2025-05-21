@@ -9,5 +9,5 @@ package poly.cafe.ui;
  * @author admin
  */
 public interface UserManagerController {
-    //ádadsd
+    
 }
