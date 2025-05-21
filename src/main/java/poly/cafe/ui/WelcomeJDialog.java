@@ -21,7 +21,7 @@ public class WelcomeJDialog extends javax.swing.JDialog implements WelcomeContro
         init();
     }
 
-        void init() {
+        public void init() {
         setIconImage(XImage.getAppIcon());
         setLocationRelativeTo(null);
         setTitle("Poly Cafe");
