@@ -84,7 +84,7 @@
         <Component class="javax.swing.JLabel" name="lblLogo">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/icons/trump-small.png"/>
+              <Image iconType="3" name="/poly/cafe/icons/trump-small.png"/>
             </Property>
           </Properties>
           <Constraints>

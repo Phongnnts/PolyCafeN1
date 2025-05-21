@@ -57,7 +57,7 @@ public class WelcomeJDialog extends javax.swing.JDialog implements WelcomeContro
 
         jLayeredPane2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/trump-small.png"))); // NOI18N
+        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/trump-small.png"))); // NOI18N
         jLayeredPane2.add(lblLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 120, 190));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -125,6 +125,7 @@ public class WelcomeJDialog extends javax.swing.JDialog implements WelcomeContro
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 WelcomeJDialog dialog = new WelcomeJDialog(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
