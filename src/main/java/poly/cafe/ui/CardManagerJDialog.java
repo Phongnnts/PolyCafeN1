@@ -4,11 +4,20 @@
  */
 package poly.cafe.ui;
 
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import poly.cafe.dao.CardDAO;
+import poly.cafe.entity.Card;
+import poly.cafe.util.MsgBox;
+import poly.cafe.util.XImage;
+
 /**
  *
  * @author admin
  */
 public class CardManagerJDialog extends javax.swing.JDialog {
+
+    CardDAO dao = new CardDAO();
 
     /**
      * Creates new form CardManagerJDialog
@@ -16,6 +25,7 @@ public class CardManagerJDialog extends javax.swing.JDialog {
     public CardManagerJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        init();
     }
 
     /**
@@ -375,4 +385,38 @@ public class CardManagerJDialog extends javax.swing.JDialog {
     private javax.swing.JLabel txtId;
     private javax.swing.JLabel txtTrangThai;
     // End of variables declaration//GEN-END:variables
+
+    void init() {
+        setIconImage(XImage.getAppIcon());
+        setLocationRelativeTo(null);
+        setTitle("DANH MỤC CATEGORY");
+        fillTable();
+    }
+
+    void fillTable() {
+        DefaultTableModel model = (DefaultTableModel) tblCategories.getModel();
+        model.setRowCount(0);
+        try {
+            List<Card> list = dao.selectAll();
+            for (Card cd : list) {
+                String statusStr = switch (cd.getStatus()) {
+                    case 1 ->
+                        "Operating";
+                    case 2 ->
+                        "Lose";
+                    case 3 ->
+                        "Error";
+                    default ->
+                        "Không xác định";
+                };
+                Object[] row = {
+                    cd.getId(), statusStr
+                };
+                model.addRow(row);
+            }
+        } catch (Exception e) {
+            MsgBox.alert(this, "Lỗi truy cập dữ liệu");
+        }
+    }
+
 }

@@ -30,5 +30,5 @@ public class User {
     @Builder.Default
     private String photo = "photo.png"; // Giá trị mặc định cho ảnh
     private boolean manager;
-
+    private boolean status;
 }

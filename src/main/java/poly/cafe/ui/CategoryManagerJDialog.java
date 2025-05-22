@@ -208,13 +208,10 @@ public class CategoryManagerJDialog extends javax.swing.JDialog {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtIDCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtIDNameCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap())
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtIDCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtIDNameCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -399,11 +396,13 @@ void init() {
 
     void fillTable() {
         DefaultTableModel model = (DefaultTableModel) tblCategory.getModel();
+        model.setRowCount(0);
         try {
             List<Category> list = dao.selectAll();
             for (Category cd : list) {
                 Object[] row = {
-                    cd.getId(), cd.getName()
+                    cd.getId(),
+                    cd.getName()
                 };
                 model.addRow(row);
             }
@@ -412,13 +411,13 @@ void init() {
         }
     }
 
-private void selectAll() {
-    if (tblCategory != null && tblCategory.getRowCount() > 0) {
-        for (int i = 0; i < tblCategory.getRowCount(); i++) {
-            tblCategory.setValueAt(true, i, 2); // Chọn hết
+    private void selectAll() {
+        if (tblCategory != null && tblCategory.getRowCount() > 0) {
+            for (int i = 0; i < tblCategory.getRowCount(); i++) {
+                tblCategory.setValueAt(true, i, 2); // Chọn hết
+            }
         }
     }
-}
 
     private void noSelectAll() {
         for (int i = 0; i < tblCategory.getRowCount(); i++) {
