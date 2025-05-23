@@ -17,7 +17,8 @@ import poly.cafe.util.XImage;
  */
 public class UserManagerJDialog extends javax.swing.JDialog {
 
-        UserDAO dao = new UserDAO();
+    UserDAO dao = new UserDAO();
+
     /**
      * Creates new form UserManagerJDialog
      */
@@ -36,6 +37,8 @@ public class UserManagerJDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnGroupRole = new javax.swing.ButtonGroup();
+        btnGroupStatus = new javax.swing.ButtonGroup();
         jTabbedPane3 = new javax.swing.JTabbedPane();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -44,8 +47,8 @@ public class UserManagerJDialog extends javax.swing.JDialog {
         btnUncheckAll = new javax.swing.JButton();
         btnDeleteCheckedItems = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        txtId = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        lblUsername = new javax.swing.JLabel();
+        txtUsername = new javax.swing.JTextField();
         btnCreate = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
@@ -54,18 +57,18 @@ public class UserManagerJDialog extends javax.swing.JDialog {
         btnMovePrevious = new javax.swing.JButton();
         btnMoveNext = new javax.swing.JButton();
         btnMoveLast = new javax.swing.JButton();
-        txtId1 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        txtId2 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        txtId3 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        txtId4 = new javax.swing.JLabel();
-        rdoOperating = new javax.swing.JRadioButton();
-        rdoOperating1 = new javax.swing.JRadioButton();
-        txtId5 = new javax.swing.JLabel();
-        rdoOperating2 = new javax.swing.JRadioButton();
-        rdoOperating3 = new javax.swing.JRadioButton();
+        lblFullName = new javax.swing.JLabel();
+        txtFullName = new javax.swing.JTextField();
+        lblRole = new javax.swing.JLabel();
+        txtConfirm = new javax.swing.JTextField();
+        lblConfirm = new javax.swing.JLabel();
+        txtPassword = new javax.swing.JTextField();
+        lblPassword = new javax.swing.JLabel();
+        rdoManager = new javax.swing.JRadioButton();
+        rdoStart = new javax.swing.JRadioButton();
+        lblStatus = new javax.swing.JLabel();
+        rdoStaff = new javax.swing.JRadioButton();
+        rdoStop = new javax.swing.JRadioButton();
         lblPhoto = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -116,35 +119,31 @@ public class UserManagerJDialog extends javax.swing.JDialog {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane3)
-                .addContainerGap())
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 705, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnCheckAll2)
-                .addGap(34, 34, 34)
+                .addGap(18, 18, 18)
                 .addComponent(btnUncheckAll)
-                .addGap(28, 28, 28)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnDeleteCheckedItems)
-                .addGap(26, 26, 26))
+                .addGap(16, 16, 16))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCheckAll2)
+                    .addComponent(btnDeleteCheckedItems)
                     .addComponent(btnUncheckAll)
-                    .addComponent(btnDeleteCheckedItems))
-                .addGap(104, 104, 104))
+                    .addComponent(btnCheckAll2))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         jTabbedPane3.addTab("DANH SÁCH", jPanel4);
 
-        txtId.setText("Tên đăng nhập");
+        lblUsername.setText("Tên đăng nhập");
 
         btnCreate.setText("Tạo mới");
 
@@ -187,41 +186,45 @@ public class UserManagerJDialog extends javax.swing.JDialog {
             }
         });
 
-        txtId1.setText("Họ và tên");
+        lblFullName.setText("Họ và tên");
 
-        txtId2.setText("Vai trò");
+        lblRole.setText("Vai trò");
 
-        txtId3.setText("Xác nhận mật khẩu");
+        lblConfirm.setText("Xác nhận mật khẩu");
 
-        txtId4.setText("Mật khẩu");
+        lblPassword.setText("Mật khẩu");
 
-        rdoOperating.setText("Quản lý");
-        rdoOperating.addActionListener(new java.awt.event.ActionListener() {
+        btnGroupRole.add(rdoManager);
+        rdoManager.setText("Quản lý");
+        rdoManager.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rdoOperatingActionPerformed(evt);
+                rdoManagerActionPerformed(evt);
             }
         });
 
-        rdoOperating1.setText("Hoạt động");
-        rdoOperating1.addActionListener(new java.awt.event.ActionListener() {
+        btnGroupStatus.add(rdoStart);
+        rdoStart.setText("Hoạt động");
+        rdoStart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rdoOperating1ActionPerformed(evt);
+                rdoStartActionPerformed(evt);
             }
         });
 
-        txtId5.setText("Trạng thái");
+        lblStatus.setText("Trạng thái");
 
-        rdoOperating2.setText("Nhân viên");
-        rdoOperating2.addActionListener(new java.awt.event.ActionListener() {
+        btnGroupRole.add(rdoStaff);
+        rdoStaff.setText("Nhân viên");
+        rdoStaff.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rdoOperating2ActionPerformed(evt);
+                rdoStaffActionPerformed(evt);
             }
         });
 
-        rdoOperating3.setText("Tạm dừng");
-        rdoOperating3.addActionListener(new java.awt.event.ActionListener() {
+        btnGroupStatus.add(rdoStop);
+        rdoStop.setText("Tạm dừng");
+        rdoStop.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rdoOperating3ActionPerformed(evt);
+                rdoStopActionPerformed(evt);
             }
         });
 
@@ -238,29 +241,26 @@ public class UserManagerJDialog extends javax.swing.JDialog {
                         .addComponent(lblPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(36, 36, 36)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtId)
-                            .addComponent(txtId2)
-                            .addComponent(txtId4)
+                            .addComponent(lblUsername)
+                            .addComponent(lblRole)
+                            .addComponent(lblPassword)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(rdoOperating)
+                                .addComponent(rdoManager)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(rdoOperating2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jTextField1)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(rdoStaff, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtUsername)
+                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtId1)
-                            .addComponent(txtId3)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(rdoOperating1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(rdoOperating3, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtId5, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblFullName)
+                            .addComponent(lblConfirm)
+                            .addComponent(lblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 57, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(txtConfirm, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtFullName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(rdoStart, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 71, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(btnCreate)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnUpdate)
@@ -271,11 +271,14 @@ public class UserManagerJDialog extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnMoveFirst, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnMovePrevious, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnMoveNext, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(btnMoveLast, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(rdoStop, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(btnMovePrevious, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnMoveNext, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(12, 12, 12)
+                                .addComponent(btnMoveLast, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -284,37 +287,37 @@ public class UserManagerJDialog extends javax.swing.JDialog {
                 .addGap(31, 31, 31)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(txtId)
+                        .addComponent(lblUsername)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(29, 29, 29)
-                                .addComponent(txtId4)
+                                .addComponent(lblPassword)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(29, 29, 29)
-                                .addComponent(txtId2))
+                                .addComponent(lblRole))
                             .addComponent(lblPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(rdoOperating)
-                            .addComponent(rdoOperating2)))
+                            .addComponent(rdoManager)
+                            .addComponent(rdoStaff)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(txtId1)
+                        .addComponent(lblFullName)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtFullName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(29, 29, 29)
-                        .addComponent(txtId3)
+                        .addComponent(lblConfirm)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(29, 29, 29)
-                        .addComponent(txtId5)
+                        .addComponent(lblStatus)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(rdoOperating1)
-                            .addComponent(rdoOperating3))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
+                            .addComponent(rdoStart)
+                            .addComponent(rdoStop))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCreate)
                     .addComponent(btnUpdate)
@@ -347,21 +350,21 @@ public class UserManagerJDialog extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void rdoOperating3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoOperating3ActionPerformed
+    private void rdoStopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoStopActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_rdoOperating3ActionPerformed
+    }//GEN-LAST:event_rdoStopActionPerformed
 
-    private void rdoOperating2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoOperating2ActionPerformed
+    private void rdoStaffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoStaffActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_rdoOperating2ActionPerformed
+    }//GEN-LAST:event_rdoStaffActionPerformed
 
-    private void rdoOperating1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoOperating1ActionPerformed
+    private void rdoStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoStartActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_rdoOperating1ActionPerformed
+    }//GEN-LAST:event_rdoStartActionPerformed
 
-    private void rdoOperatingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoOperatingActionPerformed
+    private void rdoManagerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoManagerActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_rdoOperatingActionPerformed
+    }//GEN-LAST:event_rdoManagerActionPerformed
 
     private void btnMoveLastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoveLastActionPerformed
         // TODO add your handling code here:
@@ -385,14 +388,17 @@ public class UserManagerJDialog extends javax.swing.JDialog {
 
     private void btnDeleteCheckedItemsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteCheckedItemsActionPerformed
         // TODO add your handling code here:
+        deleteCategory();
     }//GEN-LAST:event_btnDeleteCheckedItemsActionPerformed
 
     private void btnUncheckAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUncheckAllActionPerformed
         // TODO add your handling code here:
+        noSelectAll();
     }//GEN-LAST:event_btnUncheckAllActionPerformed
 
     private void btnCheckAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckAllActionPerformed
         // TODO add your handling code here:
+        selectAll();
     }//GEN-LAST:event_btnCheckAllActionPerformed
 
     /**
@@ -443,6 +449,8 @@ public class UserManagerJDialog extends javax.swing.JDialog {
     private javax.swing.JButton btnCreate;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnDeleteCheckedItems;
+    private javax.swing.ButtonGroup btnGroupRole;
+    private javax.swing.ButtonGroup btnGroupStatus;
     private javax.swing.JButton btnMoveFirst;
     private javax.swing.JButton btnMoveLast;
     private javax.swing.JButton btnMoveNext;
@@ -453,22 +461,22 @@ public class UserManagerJDialog extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JLabel lblConfirm;
+    private javax.swing.JLabel lblFullName;
+    private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblPhoto;
-    private javax.swing.JRadioButton rdoOperating;
-    private javax.swing.JRadioButton rdoOperating1;
-    private javax.swing.JRadioButton rdoOperating2;
-    private javax.swing.JRadioButton rdoOperating3;
+    private javax.swing.JLabel lblRole;
+    private javax.swing.JLabel lblStatus;
+    private javax.swing.JLabel lblUsername;
+    private javax.swing.JRadioButton rdoManager;
+    private javax.swing.JRadioButton rdoStaff;
+    private javax.swing.JRadioButton rdoStart;
+    private javax.swing.JRadioButton rdoStop;
     private javax.swing.JTable tblUser;
-    private javax.swing.JLabel txtId;
-    private javax.swing.JLabel txtId1;
-    private javax.swing.JLabel txtId2;
-    private javax.swing.JLabel txtId3;
-    private javax.swing.JLabel txtId4;
-    private javax.swing.JLabel txtId5;
+    private javax.swing.JTextField txtConfirm;
+    private javax.swing.JTextField txtFullName;
+    private javax.swing.JTextField txtPassword;
+    private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 void init() {
         setIconImage(XImage.getAppIcon());
@@ -495,6 +503,46 @@ void init() {
             }
         } catch (Exception e) {
             MsgBox.alert(this, "Lỗi truy cập dữ liệu");
+        }
+    }
+
+    private void selectAll() {
+        if (tblUser != null && tblUser.getRowCount() > 0) {
+            for (int i = 0; i < tblUser.getRowCount(); i++) {
+                tblUser.setValueAt(true, i, 2); // Chọn hết
+            }
+        }
+    }
+
+    private void noSelectAll() {
+        for (int i = 0; i < tblUser.getRowCount(); i++) {
+            tblUser.setValueAt(false, i, 2);
+        }
+    }
+
+    public void deleteCategory() {
+        if (MsgBox.confirm(this, "Bạn đang thực hiện chức năng xóa")) {
+            boolean kq = false;
+            for (int i = tblUser.getRowCount() - 1; i >= 0; i--) {
+                String id = tblUser.getValueAt(i, 0).toString();
+                Object value = tblUser.getValueAt(i, 2);
+                if (value != null && (Boolean) value) {
+
+                    try {
+                        dao.delete(id);
+                        kq = true;
+                    } catch (Exception e) {
+                        MsgBox.alert(this, "Lỗi: " + e.getMessage());
+                        continue;
+                    }
+                }
+            }
+            if (kq) {
+                MsgBox.alert(this, "Xóa thành công");
+            } else {
+                MsgBox.alert(this, "Bạn chọn dòng để xóa!");
+            }
+            this.fillTable();
         }
     }
 }

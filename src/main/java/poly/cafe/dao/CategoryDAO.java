@@ -4,8 +4,6 @@
  */
 package poly.cafe.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.util.List;
 import poly.cafe.entity.Category;
 import poly.cafe.util.XJDBC;
@@ -41,18 +39,17 @@ public class CategoryDAO {
     }
 
     public Category selectedById(String id) {
-        List<Category> list = selectBySQL(SELLECT_BY_ID_SQL, id);
+        List<Category> list = selectBySQL(SELLECT_BY_ID_SQL, id.trim());
         if (list.isEmpty()) {
             return null;
         }
         return list.get(0);
     }
-    
-        public String getCategoryIdByName(String name) {
+
+    public String getCategoryIdByName(String name) {
         String sql = "SELECT Id FROM Categories WHERE Name = ?";
         try (
-            ResultSet rs = XJDBC.query(sql, name);
-        ) {
+                ResultSet rs = XJDBC.query(sql, name);) {
             if (rs.next()) {
                 return rs.getString("Id");
             }
@@ -62,24 +59,23 @@ public class CategoryDAO {
         }
         return null;  // Không tìm thấy
     }
-        
-public List<Category> selectBySQL(String sql, Object... args) {
-    List<Category> list = new ArrayList<>();
-    
-    try (
-        ResultSet rs = XJDBC.query(sql, args);
-    ) {
-        while (rs.next()) {
-            Category entity = new Category();
-            entity.setId(rs.getString("Id"));
-            entity.setName(rs.getString("Name"));
-            list.add(entity);
-        }
-        rs.getStatement().getConnection().close();
-    } catch (Exception e) {
-        throw new RuntimeException(e);
-    }
 
-    return list;
-}
+    public List<Category> selectBySQL(String sql, Object... args) {
+        List<Category> list = new ArrayList<>();
+
+        try (
+                ResultSet rs = XJDBC.query(sql, args);) {
+            while (rs.next()) {
+                Category entity = new Category();
+                entity.setId(rs.getString("Id"));
+                entity.setName(rs.getString("Name"));
+                list.add(entity);
+            }
+            rs.getStatement().getConnection().close();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        return list;
+    }
 }

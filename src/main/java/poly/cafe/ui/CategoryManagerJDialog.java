@@ -48,10 +48,10 @@ public class CategoryManagerJDialog extends javax.swing.JDialog {
         btnDeleteCheckedItems = new javax.swing.JButton();
         btnNoSelection = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        txtIDCategory = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        txtIDNameCategory = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        lblIDCategory = new javax.swing.JLabel();
+        txtIDCategory = new javax.swing.JTextField();
+        lblIDNameCategory = new javax.swing.JLabel();
+        txtIDNameCategory = new javax.swing.JTextField();
         btnAdd = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
@@ -138,9 +138,9 @@ public class CategoryManagerJDialog extends javax.swing.JDialog {
 
         Tabs.addTab("DANH SÁCH", jPanel1);
 
-        txtIDCategory.setText("Mã loại");
+        lblIDCategory.setText("Mã loại");
 
-        txtIDNameCategory.setText("Tên loại");
+        lblIDNameCategory.setText("Tên loại");
 
         btnAdd.setText("Tạo mới");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
@@ -207,10 +207,10 @@ public class CategoryManagerJDialog extends javax.swing.JDialog {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtIDCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtIDNameCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtIDNameCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtIDCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblIDCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblIDNameCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -234,13 +234,13 @@ public class CategoryManagerJDialog extends javax.swing.JDialog {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(77, 77, 77)
-                .addComponent(txtIDCategory)
+                .addComponent(lblIDCategory)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtIDCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(txtIDNameCategory)
+                .addComponent(lblIDNameCategory)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtIDNameCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAdd)
@@ -381,11 +381,11 @@ public class CategoryManagerJDialog extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JLabel lblIDCategory;
+    private javax.swing.JLabel lblIDNameCategory;
     private javax.swing.JTable tblCategory;
-    private javax.swing.JLabel txtIDCategory;
-    private javax.swing.JLabel txtIDNameCategory;
+    private javax.swing.JTextField txtIDCategory;
+    private javax.swing.JTextField txtIDNameCategory;
     // End of variables declaration//GEN-END:variables
 void init() {
         setIconImage(XImage.getAppIcon());
@@ -478,7 +478,7 @@ void init() {
 
     public Category getForm() {
         Category cd = new Category();
-        cd.setId(txtIDCategory.getText().trim());
+        cd.setId(txtIDCategory.getText().trim());     // Lấy từ JTextField và trim
         cd.setName(txtIDNameCategory.getText().trim());
         return cd;
     }
@@ -550,7 +550,7 @@ void init() {
     }
 
     void delete() {
-        String id = txtIDCategory.getText().trim();
+        String id = lblIDCategory.getText().trim();
         if (id.isEmpty()) {
             MsgBox.alert(this, "Vui lòng nhập mã Category để xóa");
             return;
