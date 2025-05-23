@@ -28,6 +28,7 @@ public class DrinkManagerJDialog extends javax.swing.JDialog {
         setLocationRelativeTo(null);
         setTitle("DANH MỤC ĐỒ UỐNG");
         fillCategories();
+        fillTableByCategory();
     }
     /**
      * Creates new form DrinkManagerJDialog

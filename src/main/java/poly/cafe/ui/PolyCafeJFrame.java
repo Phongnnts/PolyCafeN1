@@ -294,7 +294,6 @@ private void loadUserInfo() {
         } else {
             lblPhoto.setIcon(new ImageIcon("src/main/resources/poly/cafe/icons/default.png"));
         }
-
     }
 
     private void setPermisson() {
