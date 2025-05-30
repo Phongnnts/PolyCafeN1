@@ -94,7 +94,7 @@ public class DrinkManagerJDialog extends javax.swing.JDialog {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        tblDrink.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        tblDrink.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         tblDrink.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
