@@ -18,6 +18,10 @@ public class BillJDialog extends javax.swing.JDialog {
         initComponents();
     }
 
+    BillJDialog(SalesJDialog aThis, boolean b, int cardId) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

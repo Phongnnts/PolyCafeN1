@@ -4,6 +4,17 @@
  */
 package poly.cafe.ui;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.util.List;
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+import poly.cafe.dao.CardDAO;
+import poly.cafe.entity.Card;
+import poly.cafe.util.XImage;
+
 /**
  *
  * @author admin
@@ -11,11 +22,61 @@ package poly.cafe.ui;
 public class SalesJDialog extends javax.swing.JDialog {
 
     /**
-     * Creates new form SalesJDialog
+     * Creates new form SaleJDialog
      */
     public SalesJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        init();
+    }
+
+    public void init() {
+        setIconImage(XImage.getAppIcon());
+        setLocationRelativeTo(null);
+        setTitle("BÁN HÀNG - THẺ KHÁCH HÀNG");
+        loadCards();
+    }
+
+    private void loadCards() {
+        CardDAO dao = new CardDAO();
+        List<Card> cards = dao.selectAll();
+        pnlCard.removeAll();
+
+        pnlCard.setLayout(new GridLayout(0, 6, 10, 10));
+
+        for (Card card : cards) {
+            pnlCard.add(createButton(card));
+        }
+
+        pnlCard.revalidate(); //update layout
+        pnlCard.repaint();
+
+    }
+
+    private JButton createButton(Card card) {
+        JButton btnCard = new JButton(String.format("Card #%d", card.getId()));
+        btnCard.setPreferredSize(new Dimension(100, 100));
+        btnCard.setEnabled(card.getStatus() == 1); // Nếu status == 0 thì mới bật nút
+        btnCard.setBackground(btnCard.isEnabled() ? Color.GREEN : Color.GRAY);
+
+        // Gắn ID vào ActionCommand để dễ truy xuất
+        btnCard.setActionCommand(String.valueOf(card.getId()));
+
+        btnCard.addActionListener((ActionEvent e) -> {
+            int cardId = Integer.parseInt(e.getActionCommand());
+            // Gọi phương thức showBillDialog(int cardId) từ lớp ngoài SalesJDialog,
+            // truyền vào cardId vừa lấy được.
+            SalesJDialog.this.showBillJDialog(cardId);
+        });
+
+        return btnCard;
+    }
+
+    private void showBillJDialog(int cardId) {
+        JOptionPane.showMessageDialog(this, "Bạn đã chọn thẻ #" + cardId);
+
+        BillJDialog dialog = new BillJDialog(this, true, cardId);
+        dialog.setVisible(true);
     }
 
     /**
@@ -27,23 +88,23 @@ public class SalesJDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jPanel1 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        pnlCard = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel1.setLayout(new java.awt.GridLayout());
-        jScrollPane1.setViewportView(jPanel1);
+        pnlCard.setLayout(new java.awt.GridLayout(1, 0));
+        jScrollPane2.setViewportView(pnlCard);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 641, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 619, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE)
         );
 
         pack();
@@ -75,6 +136,13 @@ public class SalesJDialog extends javax.swing.JDialog {
             java.util.logging.Logger.getLogger(SalesJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -92,7 +160,7 @@ public class SalesJDialog extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JPanel pnlCard;
     // End of variables declaration//GEN-END:variables
 }
